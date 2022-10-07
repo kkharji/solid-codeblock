@@ -15,7 +15,9 @@ const providerOpts: ICodeblockProvider = {
 export const App: Component = () => {
   return (<>
     <CodeblockProvider {...providerOpts} >
+      <h1 class="text-3xl font-bold underline py-5">Solidjs Codeblock</h1>
       <button
+        class='rounded-xl bg-red-400 p-3 my-3 text-white hover:bg-red-500'
         textContent={`Theme: ${isDark() ? "dark" : "light"}`}
         onClick={() => setMode(!isDark())}
       />

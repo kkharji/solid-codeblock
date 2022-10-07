@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply p-5;
+}
+
+h1 {
+  @apply text-xl font-bold py-5
+}
