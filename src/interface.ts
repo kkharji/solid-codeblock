@@ -8,7 +8,7 @@ export type ICodeblockProvider = {
   /**
    * Solid Signal that resolve to weather the theme is dark or light
    */
-  isDarkAccessor: Accessor<boolean>
+  isDark: Accessor<boolean>
   /**
    * A list of themes to load upfront.
    *
@@ -47,4 +47,27 @@ export interface ICodeblockContext {
    * Is highlighter still being loaded
    */
   loading: boolean,
+}
+
+
+/**
+ * Main Codeblock Component props
+ */
+export interface ICodeblock {
+  /**
+   * Raw text content
+   */
+  textContent?: string,
+  /**
+   * URL pointing to an end point returning type text.
+   */
+  href?: string,
+  /**
+   * Content length to render placeholder while downloading the content
+   */
+  contentLen?: number,
+  /**
+   * Content Language
+   */
+  lang: Lang
 }

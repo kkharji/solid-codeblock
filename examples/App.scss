@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --cb-container-padding: 20px;
+  --cb-container-border-radius: 10px;
+}
+
+.cb-container {
+  @apply dark:bg-[#0d1117] bg-[#ffffff];
+}
+
+body {
+  @apply p-5 bg-gray-200 dark:bg-gray-900;
+  @apply transition-colors duration-500 ease-in-out;
+  @apply max-w-4xl mx-auto;
+}
+
+h1 {
+  @apply text-2xl font-medium py-5 dark:text-gray-50;
+}
+
+h2 {
+  @apply font-bold py-5 dark:text-gray-50;
+}
+

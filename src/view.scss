@@ -1,0 +1,18 @@
+// :root {
+//   --cb-background: #fff;
+//   --cb-container-padding: 5px;
+//   --cb-container-border-radius: 8px;
+// }
+
+.cb-container-bg {
+  background-color: transparent;
+}
+
+.cb-container {
+  padding: var(--cb-container-padding, 20px);
+  border-radius: var(--cb-container-border-radius, 10px);
+  & pre.shiki {
+
+  }
+}
+
