@@ -6,15 +6,24 @@ import type { Accessor } from "solid-js"
  */
 export type ICodeblockProvider = {
   /**
-   * Solid Signal that resolve to weather the theme is dark or light
-   */
-  isDark: Accessor<boolean>
-  /**
-   * A list of themes to load upfront.
+   * Solid Signal that resolve to weather the theme is dark or light.
    *
-   * Default to: `{dark: 'dark-plus', light: 'light-plus' }`
+   * This is required to be set in order to have a reactive codeblock that changes based on current theme
    */
-  theme?: Record<"dark" | "light", Theme>;
+  isDark?: Accessor<boolean>
+  /**
+   * A map of dark/light themes to load upfront.
+   *
+   * Default to: `{}`
+   */
+  themes?: Record<"dark" | "light", Theme>;
+
+  /**
+   * A signle theme to load
+   *
+   * Default to: `dark-plus`
+   */
+  theme?: Theme;
   /**
    * A list of languages to load upfront.
    *

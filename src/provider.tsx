@@ -7,19 +7,20 @@ const CodeblockContext = createContext<Store<ICodeblockContext>>({ loading: true
 
 export const useCodeblockContext = () => useContext(CodeblockContext);
 
-const defaultOpts = { theme: { dark: "dark-plus" as Theme, light: "light-plus" as Theme } }
+const defaultOpts: { themes: Record<"dark" | "light", Theme> } = { themes: { dark: "dark-plus", light: "light-plus" } }
 
-export const CodeblockProvider: FlowComponent<{ opts: ICodeblockProvider }> = (userProps) => {
-  const props = mergeProps({ opts: defaultOpts }, userProps)
+export const CodeblockProvider: FlowComponent<{ opts: ICodeblockProvider }> = (props) => {
+  const { theme: userTheme, themes, langs, isDark } = mergeProps(defaultOpts, props.opts)
+  const singleTheme = userTheme !== undefined;
   const [store, setStore] = createStore<ICodeblockContext>({ loading: true } as ICodeblockContext)
-  const [theme, setTheme] = createSignal<Theme>(props.opts.theme!.dark);
+  const [theme, setTheme] = createSignal<Theme>(singleTheme ? userTheme : themes.dark);
 
   onMount(async () => {
-    setStore("loading", true)
     setCDN('https://unpkg.com/shiki/');
     const shiki = await getHighlighter({
-      langs: props.opts.langs,
-      themes: [...Object.values(props.opts.theme!)]
+      langs: langs,
+      themes: singleTheme ? undefined : [...Object.values(themes)],
+      theme: userTheme
     })
     setStore({
       addLang: shiki.loadLanguage,
@@ -28,10 +29,9 @@ export const CodeblockProvider: FlowComponent<{ opts: ICodeblockProvider }> = (u
     })
   })
 
-  // - Should use on???
-  createEffect(() => {
-    setTheme(props.opts.isDark() ? props.opts.theme!.dark : props.opts.theme!.light)
-  })
+  if (isDark) {
+    createEffect(() => { setTheme(isDark() ? themes.dark : themes.light) })
+  }
 
   return (
     <CodeblockContext.Provider value={store}>
