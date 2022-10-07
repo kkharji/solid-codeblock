@@ -13,7 +13,7 @@ const defaultConfig: Config = {
 }
 
 export type IConfigContext = [config: Config, setConfig: SetStoreFunction<Config>]
-export const ConfigContext = createContext<[config: Config, setConfig: SetStoreFunction<Config>]>();
+export const ConfigContext = createContext<[config: Config, setConfig: SetStoreFunction<Config>]>([] as any as IConfigContext);
 export const useConfig = () => useContext(ConfigContext);
 
 export const ConfigProvider = (props: ParentProps<{}>) => {

@@ -1,23 +1,37 @@
-import Codeblock from "@codeblock/view"
+import Codeblock from "@codeblock/component"
 import { createSignal } from "solid-js"
-import ExampleHeader from "./components/example-header"
+import Example from "@examples/components/example"
+import { useConfig } from "./config"
 
 const defaultContent = "export const Home = () => {\n\treturn <div>Welcome</div>\n}"
 const altContent = "export const Login = () => {\n\treturn <input />\n}"
 const [content, setContent] = createSignal(defaultContent)
 
-export default () => {
+const SwapContentButton = () =>
+  <button
+    class="swap-content-btn"
+    textContent="Swap Content"
+    onClick={() => setContent(content() === defaultContent ? altContent : defaultContent)}
+  />
+
+export default function SimpleExample() {
+  const [config] = useConfig()
   return (<>
-    <ExampleHeader title="Simple">
-      <button
-        class="p-2.5 py-1 rounded-xl bg-gray-600 hover:bg-gray-400 text-gray-50 text-sm"
-        textContent="Swap Content"
-        onClick={() => setContent(content() === defaultContent ? altContent : defaultContent)}
+    <Example
+      title="Simple"
+      desc="Default behavior with dark/light mode"
+      providerOpts={{
+        langs: ["tsx"],
+        isDark: () => config.isDark
+      }}
+      headerContent={
+        <SwapContentButton />
+      }
+    >
+      <Codeblock
+        lang="tsx"
+        textContent={content()}
       />
-    </ExampleHeader>
-    <Codeblock
-      lang="tsx"
-      textContent={content()}
-    />
+    </Example>
   </>)
 }

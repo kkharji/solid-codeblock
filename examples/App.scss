@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --cb-container-padding: 20px;
   --cb-container-border-radius: 10px;
 }
 
-.cb-container {
-  @apply dark:bg-[#0d1117] bg-[#ffffff];
+@mixin github-theme {
+  .cb-container {
+    @apply dark:bg-[#0d1117] bg-[#ffffff];
+  }
+}
+
+#simple {
+  .cb-container {
+    @apply dark:bg-[#1E1E1E] bg-[#ffffff];
+  }
 }
 
 body {
@@ -18,11 +25,33 @@ body {
   @apply max-w-4xl mx-auto;
 }
 
-h1 {
-  @apply text-2xl font-medium py-5 dark:text-gray-50;
+header {
+  @apply  flex gap-5;
+  & > button {
+    @apply bg-gray-700 text-white dark:bg-gray-200 dark:text-black;
+    @apply hover:bg-blend-darken;
+    @apply rounded-xl p-2 my-6 text-xs;
+  }
 }
 
+h1 {
+  @apply text-2xl font-bold py-5 dark:text-gray-50;
+}
 h2 {
   @apply font-bold py-5 dark:text-gray-50;
 }
+section {
+  @apply flex gap-3 flex-row my-2 bg-gray-300 dark:bg-gray-800 p-2 rounded-2xl mb-3;
+  & > h2 {
+    @apply flex-1 p-1;
+  }
+  & ~ p {
+    @apply mb-4 px-2 dark:text-white;
+  }
+}
+
+.swap-content-btn {
+  @apply p-2.5 py-1 rounded-xl bg-gray-600 hover:bg-gray-400 text-gray-50 text-sm;
+}
+
 

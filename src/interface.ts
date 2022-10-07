@@ -56,6 +56,11 @@ export interface ICodeblockContext {
    * Is highlighter still being loaded
    */
   loading: boolean,
+  /**
+   * Current theme name
+   */
+  theme: Theme
+
 }
 
 

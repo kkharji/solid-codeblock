@@ -1,40 +1,53 @@
-import { FlowComponent, createContext, createSignal, mergeProps, createEffect, onMount, useContext } from "solid-js"
-import { createStore, Store } from "solid-js/store"
+import * as solid from "solid-js"
+import { createStore } from "solid-js/store"
 import { getHighlighter, setCDN, Theme } from "shiki";
 import { ICodeblockContext, ICodeblockProvider } from "./interface";
 
-const CodeblockContext = createContext<Store<ICodeblockContext>>({ loading: true } as ICodeblockContext)
+type CodeblockComponent = solid.FlowComponent<{ opts: ICodeblockProvider }>;
 
-export const useCodeblockContext = () => useContext(CodeblockContext);
+const CodeblockContext = solid.createContext({ loading: true } as ICodeblockContext)
+const useCodeblockContext = () => solid.useContext(CodeblockContext);
+const defaultOpts: { themes: Record<"dark" | "light", Theme> } = {
+  themes: { dark: "dark-plus", light: "light-plus" }
+}
 
-const defaultOpts: { themes: Record<"dark" | "light", Theme> } = { themes: { dark: "dark-plus", light: "light-plus" } }
+const CodeblockProvider: CodeblockComponent = (props) => {
+  const opts = solid.mergeProps(defaultOpts, props.opts)
+  const singleTheme = opts.theme !== undefined;
+  const [store, setStore] = createStore({
+    loading: true,
+    theme: singleTheme ? opts.theme : opts.themes.dark
+  } as ICodeblockContext)
 
-export const CodeblockProvider: FlowComponent<{ opts: ICodeblockProvider }> = (props) => {
-  const { theme: userTheme, themes, langs, isDark } = mergeProps(defaultOpts, props.opts)
-  const singleTheme = userTheme !== undefined;
-  const [store, setStore] = createStore<ICodeblockContext>({ loading: true } as ICodeblockContext)
-  const [theme, setTheme] = createSignal<Theme>(singleTheme ? userTheme : themes.dark);
-
-  onMount(async () => {
-    setCDN('https://unpkg.com/shiki/');
+  solid.onMount(async () => {
+    setCDN(opts.ShikiSDNRoot ? opts.ShikiSDNRoot : "https://unpkg.com/shiki/");
     const shiki = await getHighlighter({
-      langs: langs,
-      themes: singleTheme ? undefined : [...Object.values(themes)],
-      theme: userTheme
+      langs: opts.langs,
+      themes: singleTheme ? undefined : [...Object.values(opts.themes)],
+      theme: opts.theme
     })
     setStore({
       addLang: shiki.loadLanguage,
-      parse: (code, lang): string => shiki.codeToHtml(code, { lang, theme: theme() }),
+      parse: (code, lang): string => shiki.codeToHtml(code, {
+        lang, theme: store.theme
+      }),
       loading: false,
     })
   })
 
-  if (isDark) {
-    createEffect(() => { setTheme(isDark() ? themes.dark : themes.light) })
+  if (opts.isDark) {
+    const isDark = opts.isDark;
+    solid.createEffect(() => {
+      setStore("theme", isDark() ? opts.themes.dark : opts.themes.light)
+    })
   }
 
   return (
-    <CodeblockContext.Provider value={store}>
-      {props.children}
-    </CodeblockContext.Provider>)
+    <CodeblockContext.Provider
+      value={store}
+      children={props.children}
+    />
+  )
 }
+
+export { useCodeblockContext, CodeblockProvider }
