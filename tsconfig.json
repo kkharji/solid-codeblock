@@ -16,11 +16,15 @@
       ],
       "@codeblock/*": [
         "./src/*"
+      ],
+      "@codeblock": [
+        "./src"
       ]
     },
     "types": [
       "vite/client",
       "node",
+      "shiki",
       "@types/jest"
     ]
   }
