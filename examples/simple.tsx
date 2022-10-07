@@ -26,8 +26,7 @@ export default function SimpleExample() {
       }}
       headerContent={
         <SwapContentButton />
-      }
-    >
+      }>
       <Codeblock
         lang="tsx"
         textContent={content()}

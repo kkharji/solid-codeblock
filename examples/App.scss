@@ -26,9 +26,9 @@ body {
 }
 
 header {
-  @apply  flex gap-5;
+  @apply flex gap-5;
   & > button {
-    @apply bg-gray-700 text-white dark:bg-gray-200 dark:text-black;
+    @apply bg-gray-700 text-white dark:bg-blue-200 border dark:text-black;
     @apply hover:bg-blend-darken;
     @apply rounded-xl p-2 my-6 text-xs;
   }

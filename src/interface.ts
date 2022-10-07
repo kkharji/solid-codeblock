@@ -1,5 +1,13 @@
 import type { ILanguageRegistration, Lang, Theme } from "shiki";
-import type { Accessor } from "solid-js"
+import type { Accessor, FlowComponent } from "solid-js"
+
+export type CodeblockProviderComponent = FlowComponent<{
+  opts: ICodeblockProvider
+}>;
+
+export type ICodeblockProviderDefaults = Required<
+  Pick<ICodeblockProvider, "cdnRoot" | "themes">
+>;
 
 /**
  * Provider Intialize Options
@@ -36,7 +44,7 @@ export type ICodeblockProvider = {
    *
    * Default: https://unpkg.com/shiki/
    */
-  ShikiSDNRoot?: string
+  cdnRoot?: string
 };
 
 

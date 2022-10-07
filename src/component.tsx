@@ -5,16 +5,16 @@ import "./view.scss"
 
 let Fallback = () => <h1 class="font-medium text-3xl italic">Loading shiki library ....</h1>
 
-const getContent = async ({ href, content }: { href?: string, content?: string }) =>
-  content
-    ? content as string
-    : await fetch(href as string).then(r => r.text())
-
 const getOpts = (props: ICodeblock) => createMemo(() => ({
   content: props.textContent,
   href: props.href,
   len: props.textContent ? props.textContent.split("\n").length : props.contentLen
 }))
+
+const getContent = async (props: ReturnType<ReturnType<typeof getOpts>>) =>
+  props.content
+    ? props.content
+    : await fetch(props.href as string).then(r => r.text())
 
 export const Codeblock: ParentComponent<ICodeblock> = (props) => {
   console.debug("[solidjs-codeblock] new Codeblock()")

@@ -1,7 +1,14 @@
 import { CodeblockProvider, ICodeblockProvider } from "@codeblock";
 import { FlowProps, JSXElement } from "solid-js";
 
-export default function Example(props: FlowProps<{ providerOpts: ICodeblockProvider, title: string, desc: string, headerContent: JSXElement }>) {
+export type ExampleProps = FlowProps<{
+  providerOpts: ICodeblockProvider,
+  title: string,
+  desc: string,
+  headerContent: JSXElement
+}>;
+
+export default function Example(props: ExampleProps) {
   return (
     <CodeblockProvider opts={props.providerOpts}>
       <div id={props.title.toLowerCase()}>

@@ -1,26 +1,26 @@
 import * as solid from "solid-js"
 import { createStore } from "solid-js/store"
-import { getHighlighter, setCDN, Theme } from "shiki";
-import { ICodeblockContext, ICodeblockProvider } from "./interface";
+import { getHighlighter, setCDN } from "shiki";
+import * as cb from "./interface";
 
-type CodeblockComponent = solid.FlowComponent<{ opts: ICodeblockProvider }>;
-
-const CodeblockContext = solid.createContext({ loading: true } as ICodeblockContext)
-const useCodeblockContext = () => solid.useContext(CodeblockContext);
-const defaultOpts: { themes: Record<"dark" | "light", Theme> } = {
-  themes: { dark: "dark-plus", light: "light-plus" }
+const defaultOpts: cb.ICodeblockProviderDefaults = {
+  themes: { dark: "dark-plus", light: "light-plus" },
+  cdnRoot: "https://unpkg.com/shiki/"
 }
 
-const CodeblockProvider: CodeblockComponent = (props) => {
+const CodeblockContext = solid.createContext({ loading: true } as cb.ICodeblockContext)
+const useCodeblockContext = () => solid.useContext(CodeblockContext);
+
+const CodeblockProvider: cb.CodeblockProviderComponent = (props) => {
   const opts = solid.mergeProps(defaultOpts, props.opts)
   const singleTheme = opts.theme !== undefined;
   const [store, setStore] = createStore({
     loading: true,
     theme: singleTheme ? opts.theme : opts.themes.dark
-  } as ICodeblockContext)
+  } as cb.ICodeblockContext)
 
   solid.onMount(async () => {
-    setCDN(opts.ShikiSDNRoot ? opts.ShikiSDNRoot : "https://unpkg.com/shiki/");
+    setCDN(opts.cdnRoot);
     const shiki = await getHighlighter({
       langs: opts.langs,
       themes: singleTheme ? undefined : [...Object.values(opts.themes)],
