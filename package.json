@@ -1,0 +1,49 @@
+{
+  "name": "solid-codeblock",
+  "version": "0.0.1",
+  "description": "A lightweight library to render codeblock for solid-js",
+  "main": "index.es.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "codeblock",
+    "solidjs"
+  ],
+  "author": "kkharji",
+  "scripts": {
+    "dev": "vite dev --config=vite.dev.ts",
+    "build": "vite build --config=vite.prod.ts && tsc-alias && pnpm run copy",
+    "copy": "cp package.json dist",
+    "start": "vite --config=vite.dev.ts",
+    "test": "jest --coverage"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "solid-js": "^1.4.0",
+    "shiki": "^0.11.1"
+  },
+  "devDependencies": {
+    "shiki": "^0.11.1",
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-transform-runtime": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.5.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.0.0",
+    "babel-loader": "^8.2.5",
+    "babel-preset-solid": "^1.4.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "solid-jest": "solidjs/solid-jest",
+    "solid-js": "^1.4.0",
+    "solid-testing-library": "^0.3.0",
+    "ts-jest": "^28.0.2",
+    "ts-node": "^10.7.0",
+    "tsc-alias": "^1.6.11",
+    "typescript": "^4.8.4",
+    "vite-plugin-dts": "^1.2.0",
+    "vite-plugin-solid": "^2.2.6",
+    "vite-tsconfig-paths": "^3.4.1",
+    "vite": "^3.1.6"
+  }
+}

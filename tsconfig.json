@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "removeComments": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "@examples/*": [
+        "./examples/*"
+      ],
+      "@codeblock/*": [
+        "./src/*"
+      ]
+    },
+    "types": [
+      "vite/client",
+      "node",
+      "@types/jest"
+    ]
+  }
+}
