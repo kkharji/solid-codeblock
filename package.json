@@ -1,6 +1,6 @@
 {
   "name": "solid-codeblock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightweight library to render codeblock for solid-js",
   "main": "index.es.js",
   "types": "dist/index.d.ts",
@@ -8,6 +8,10 @@
     "codeblock",
     "solidjs"
   ],
+  "repository": {
+    "url": "https://github.com/kkharji/solid-codeblock",
+    "type": "git"
+  },
   "author": "kkharji",
   "scripts": {
     "dev": "vite dev --config=vite.dev.ts",

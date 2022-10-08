@@ -30,11 +30,11 @@ Simple lightweight solid codeblock component.
 
 #### NPM
 ```bash
-npm install @kkharji/codeblock shiki
+npm install solid-codeblock shiki
 ```
 #### PNPM
 ```bash
-pnpm add @kkharji/codeblock shiki
+pnpm add solid-codeblock shiki
 ```
 
 ## Feature
