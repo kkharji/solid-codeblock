@@ -13,9 +13,16 @@ const getOpts = (props: ICodeblock) => () => ({
 
 const getContent = async (props: ReturnType<ReturnType<typeof getOpts>>) => {
   console.debug("[solidjs-codeblock] content update")
-  return props.content
-    ? props.content
-    : await fetch(props.href as string).then(r => r.text())
+  if (props.content) {
+
+    return props.content;
+  }
+  try {
+    return (await fetch(props.href as string, { mode: "cors" }).then(r => r.text()))
+  } catch (e) {
+    // TODO: show error message
+    console.log(e)
+  }
 }
 
 export const Codeblock: ParentComponent<ICodeblock> = (props) => {
