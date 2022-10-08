@@ -1,9 +1,9 @@
 import { createResource, ParentComponent, Show } from "solid-js";
-import { ICodeblock } from "./interface";
-import { useCodeblockContext } from "./provider";
-import "./view.scss"
+import { ICodeblock } from "@codeblock/interface";
+import Placeholder from "@codeblock/Placeholder";
+import { useCodeblockContext } from "@codeblock/provider";
+import "./Codeblock.scss"
 
-let Fallback = () => <h1 class="font-medium text-3xl italic">Loading shiki library ....</h1>
 
 const getOpts = (props: ICodeblock) => () => ({
   content: props.textContent,
@@ -25,11 +25,17 @@ export const Codeblock: ParentComponent<ICodeblock> = (props) => {
   const [content] = createResource(opts, getContent)
 
   return (
-    <Show when={!(code.loading || content.loading)} fallback={Fallback()}>
-      <div class={`cb-container ${code.theme}`}
+    <Show when={!(code.loading || content.loading)}
+      fallback={<Placeholder
+        contentLen={opts().len ?? 5}
+        mode={code.theme}
+      />}
+      children={<div
+        class={`cb-container ${code.theme}`}
         innerHTML={code.parse(content() as string, props.lang)}
-      />
-    </Show>
+      />}
+    />
+
   )
 };
 

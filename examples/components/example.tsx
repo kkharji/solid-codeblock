@@ -5,7 +5,7 @@ export type ExampleProps = FlowProps<{
   providerOpts: ICodeblockProvider,
   title: string,
   desc: string,
-  headerContent: JSXElement
+  headerContent?: JSXElement
 }>;
 
 export default function Example(props: ExampleProps) {

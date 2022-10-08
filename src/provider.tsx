@@ -19,6 +19,7 @@ const CodeblockProvider: cb.CodeblockProviderComponent = (props) => {
     theme: singleTheme ? opts.theme : opts.themes.dark
   } as cb.ICodeblockContext)
 
+
   solid.onMount(async () => {
     setCDN(opts.cdnRoot);
     const shiki = await getHighlighter({

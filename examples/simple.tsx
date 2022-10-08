@@ -1,4 +1,4 @@
-import Codeblock from "@codeblock/component"
+import Codeblock from "@codeblock/Codeblock"
 import { createSignal } from "solid-js"
 import Example from "@examples/components/example"
 import { useConfig } from "./config"

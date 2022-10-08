@@ -1,34 +1,20 @@
-import Codeblock from "@codeblock/component"
-import { createSignal } from "solid-js"
+import Codeblock from "@codeblock/Codeblock"
 import Example from "@examples/components/example"
 
-const defaultContent = "export const Home = () => {\n\treturn <div>Welcome</div>\n}"
-const altContent = "export const Login = () => {\n\treturn <input />\n}"
-const [content, setContent] = createSignal(defaultContent)
-
-const SwapContentButton = () =>
-  <button
-    class="swap-content-btn"
-    textContent="Swap Content"
-    onClick={() => setContent(content() === defaultContent ? altContent : defaultContent)}
-  />
+const content = "export const Login = () => {\n\treturn <input />\n}"
 
 export default function CustomExample() {
   return (<>
     <Example
       title="Custom"
-      desc="Signle theme name provided and no dark/light mode binding"
+      desc="Signle Theme name provided and no dark/light mode binding"
       providerOpts={{
-        theme: "github-dark",
+        theme: "github-light",
         langs: ["tsx"]
       }}
-      headerContent={
-        <SwapContentButton />
-      }>
-      <Codeblock
-        lang="tsx"
-        textContent={content()}
-      />
+    >
+      <Codeblock lang="tsx" textContent={content} />
     </Example>
+
   </>)
 }

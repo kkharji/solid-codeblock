@@ -1,0 +1,107 @@
+// modified version of https://github.com/zalog/placeholder-loading;
+@use "sass:math";
+@use "sass:color";
+@use "sass:list";
+
+@import "colors";
+$ph-cols:                 12;
+$ph-cols-remove-odd:      true;
+$ph-spacer:               20.6px;
+$ph-line-normal-height:   12px;
+$ph-line-large-height:    15px;
+$ph-animation:            ph-animation 0.85s linear infinite;
+
+// pre.shiki, .ph-bg { border-radius: 1rem; padding: 1.75rem; }
+// pre.shiki { margin-bottom: 2.25rem; }
+// .ph-bg { margin-top: 24px; margin-bottom: 36px; }
+
+.ph-item, *, ::after, ::before {
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+}
+
+.ph-item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding-top: 0.36rem;
+  padding-bottom: 0.35rem;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: 500%;
+    margin-left: -250%;
+    pointer-events: none;
+    content: " ";
+    -webkit-animation: $ph-animation;
+    animation: $ph-animation;
+  }
+}
+
+.ph-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -($ph-spacer * 0.6);
+
+  div {
+    height: $ph-line-normal-height;
+    margin-top: ($ph-spacer * 0.6);
+      border-width: 1px;
+      &.empty { opacity: 0.8; border-width: 0px;}
+
+  }
+
+  .big, &.big div {
+    height: $ph-line-large-height;
+  }
+}
+
+[class*=ph-col] > * + .ph-row { margin-top: 0; }
+[class*=ph-col] > * + * { margin-top: ($ph-spacer * 0.5); }
+[dir="rtl"] .ph-item { direction: rtl; }
+[dir="rtl"]  [class*=ph-col] { direction: rtl; }
+
+@-webkit-keyframes ph-animation {
+  0% { transform: translate3d(-30%, 0, 0); }
+  100% { transform: translate3d(30%, 0, 0); }
+}
+
+@keyframes ph-animation {
+  0% { transform: translate3d(-30%, 0, 0); }
+  100% { transform: translate3d(30%, 0, 0); }
+}
+
+@mixin ph-make-col($size, $columns) {
+  .ph-col-#{$size} { flex: 0 0 math.percentage(math.div($size, $columns)); }
+}
+
+@each $theme, $info in $backgrounds {
+  $bg: list.nth($info, 1);
+  $is-dark: list.nth($info, 2);
+
+  .#{$theme} .ph-item::before {
+    background: linear-gradient(to right, rgba(#000, 0) 46%, rgba($bg, 1) 50%, rgba(#000, 0) 54%) 50% 50%;
+  }
+
+  .#{$theme} .ph-row div {
+    background: darken($color: $bg, $amount: 10);
+    border-color: lighten($color: $bg, $amount: 1);
+    &.empty {
+      @if $is-dark {
+        background: linear-gradient(to right, darken($color: $bg, $amount: 1), darken($color: $bg, $amount: 16));
+      } @else {
+        background: linear-gradient(to right, darken($color: $bg, $amount: 3), darken($color: $bg, $amount: 18));
+      }
+    }
+  }
+}
+
+@for $i from 1 through $ph-cols {
+  @if $ph-cols-remove-odd and $i % 2 == 0 { @include ph-make-col($i, $ph-cols); }
+  @else if not $ph-cols-remove-odd { @include ph-make-col($i, $ph-cols); }
+}

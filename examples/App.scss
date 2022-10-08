@@ -2,32 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --cb-container-padding: 20px;
-  --cb-container-border-radius: 10px;
-}
-
-.cb-container {
-  &.github-dark, &.github-dark * {
-    background: #0d1117 !important;
-  }
-  &.github-dark pre {
-    // background: #0d1117 !important;
-  }
-  &.github-light {
-    background: #ffffff;
-  }
-  &.dark-plus {
-    background: #1E1E1E;
-  }
-  &.light-plus {
-    background: #ffffff;
-  }
-}
+// .cb-container {
+//   &.github-dark, &.github-dark pre {
+//     background: #0d1117 !important;
+//   }
+//   &.github-dark pre {
+//     // background: #0d1117 !important;
+//   }
+//   &.github-light {
+//     background: #ffffff;
+//   }
+//   &.dark-plus {
+//     background: #1E1E1E;
+//   }
+//   &.light-plus {
+//     background: #ffffff;
+//   }
+// }
 
 
-.example {
-  @apply mb-9;
+.example { @apply mb-9; }
+
+body {
+  background-color: rgb(17 24 39)
 }
 
 body {
@@ -66,5 +63,4 @@ section {
 .swap-content-btn {
   @apply p-2.5 py-1 rounded-xl bg-gray-600 hover:bg-gray-400 text-gray-50 text-sm;
 }
-
 
