@@ -14,7 +14,7 @@ export type ICodeblockProviderDefaults = Required<
  */
 export type ICodeblockProvider = {
   /**
-   * Solid Signal that resolve to weather the theme is dark or light.
+   * Solid Signal that resolve to whether the theme is dark or light.
    *
    * This is required to be set in order to have a reactive codeblock that changes based on current theme
    */

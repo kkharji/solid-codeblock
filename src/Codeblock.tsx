@@ -10,6 +10,8 @@ const getOpts = (props: ICodeblock) => () => ({
   href: props.href,
   len: props.textContent ? props.textContent.split("\n").length : props.contentLen
 })
+export const delay = <T,>
+  (fn: () => T, delay = 700) => new Promise<T>((res) => setTimeout(() => res(fn()), delay));
 
 const getContent = async (props: ReturnType<ReturnType<typeof getOpts>>) => {
   console.debug("[solidjs-codeblock] content update")
@@ -18,7 +20,7 @@ const getContent = async (props: ReturnType<ReturnType<typeof getOpts>>) => {
     return props.content;
   }
   try {
-    return (await fetch(props.href as string, { mode: "cors" }).then(r => r.text()))
+    return delay(() => (fetch(props.href as string).then(r => r.text())), 1000)
   } catch (e) {
     // TODO: show error message
     console.log(e)

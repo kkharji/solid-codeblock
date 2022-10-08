@@ -22,18 +22,24 @@ const CodeblockProvider: cb.CodeblockProviderComponent = (props) => {
 
   solid.onMount(async () => {
     setCDN(opts.cdnRoot);
-    const shiki = await getHighlighter({
-      langs: opts.langs,
-      themes: singleTheme ? undefined : [...Object.values(opts.themes)],
-      theme: opts.theme
-    })
-    setStore({
-      addLang: shiki.loadLanguage,
-      parse: (code, lang): string => shiki.codeToHtml(code, {
-        lang, theme: store.theme
-      }),
-      loading: false,
-    })
+    try {
+      const shiki = await getHighlighter({
+        langs: opts.langs,
+        themes: singleTheme ? undefined : [...Object.values(opts.themes)],
+        theme: opts.theme
+      })
+      setStore({
+        addLang: shiki.loadLanguage,
+        parse: (code, lang): string => shiki.codeToHtml(code, {
+          lang, theme: store.theme
+        }),
+        loading: false,
+      })
+    } catch (e) {
+      console.error(e)
+
+    }
+
   })
 
   if (opts.isDark) {
