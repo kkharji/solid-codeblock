@@ -2,6 +2,8 @@
 
 Simple lightweight solid codeblock component.
 
+![](./examples/public/preview.gif)
+
 ## Usage
 ```html
 <!-- Simple textContent -->
