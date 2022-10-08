@@ -7,16 +7,27 @@
   --cb-container-border-radius: 10px;
 }
 
-@mixin github-theme {
-  .cb-container {
-    @apply dark:bg-[#0d1117] bg-[#ffffff];
+.cb-container {
+  &.github-dark, &.github-dark * {
+    background: #0d1117 !important;
+  }
+  &.github-dark pre {
+    // background: #0d1117 !important;
+  }
+  &.github-light {
+    background: #ffffff;
+  }
+  &.dark-plus {
+    background: #1E1E1E;
+  }
+  &.light-plus {
+    background: #ffffff;
   }
 }
 
-#simple {
-  .cb-container {
-    @apply dark:bg-[#1E1E1E] bg-[#ffffff];
-  }
+
+.example {
+  @apply mb-9;
 }
 
 body {
@@ -40,8 +51,10 @@ h1 {
 h2 {
   @apply font-bold py-5 dark:text-gray-50;
 }
+
 section {
-  @apply flex gap-3 flex-row my-2 bg-gray-300 dark:bg-gray-800 p-2 rounded-2xl mb-3;
+  @apply flex gap-3 flex-row my-2 bg-gray-300 dark:bg-gray-800 p-2 rounded-2xl mb-2;
+
   & > h2 {
     @apply flex-1 p-1;
   }

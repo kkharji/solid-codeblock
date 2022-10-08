@@ -11,7 +11,7 @@ export type ExampleProps = FlowProps<{
 export default function Example(props: ExampleProps) {
   return (
     <CodeblockProvider opts={props.providerOpts}>
-      <div id={props.title.toLowerCase()}>
+      <div class="example" id={props.title.toLowerCase()}>
         <section>
           <h2 textContent={props.title} />
           {props.headerContent}
