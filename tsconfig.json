@@ -1,33 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "dist",
-    "removeComments": false,
-    "strict": true,
-    "target": "ESNext",
-    "module": "ESNext",
+    "declaration": true,
+    "target": "esnext",
+    "newLine": "LF",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "outDir": "./dist",
+    "module": "esnext",
     "paths": {
       "@examples/*": [
         "./examples/*"
       ],
-      "@codeblock/*": [
-        "./src/*"
-      ],
       "@codeblock": [
         "./src"
       ]
-    },
-    "types": [
-      "vite/client",
-      "node",
-      "shiki",
-      "@types/jest"
-    ]
-  }
+    }
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules/"
+  ]
 }

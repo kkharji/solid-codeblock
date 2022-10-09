@@ -30,10 +30,13 @@ const staticOpts = {
     { src: "node_modules/shiki/dist/onig.wasm", dest: "shiki/dist" }
   ]
 }
+
 export default defineConfig({
   plugins: [
     solidPlugin(),
-    tsconfigPaths({ root: __dirname }),
+    tsconfigPaths({
+      root: ".",
+    }),
     viteStaticCopy(staticOpts)
   ],
   root: "./examples"

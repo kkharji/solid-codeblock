@@ -1,5 +1,5 @@
-import Codeblock from "@codeblock/Codeblock"
-import Example from "@examples/components/example"
+import { Codeblock, ICodeblockProvider } from "../src"
+import Example from "./components/example"
 import { createSignal } from "solid-js"
 import { useConfig } from "./config"
 
@@ -26,10 +26,9 @@ export default function GistExample() {
           dark: "github-dark", light: "github-light"
         },
         langs: ["rust"]
-      }}
+      } as ICodeblockProvider}
       headerContent={<SwapContentButton />}
-    >
-      <Codeblock lang="rust" href={url()} contentLen={16} />
-    </Example>
+      children={<Codeblock lang="rust" href={url()} contentLen={16} />}
+    />
   )
 }

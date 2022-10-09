@@ -3,13 +3,82 @@
 @use "sass:color";
 @use "sass:list";
 
-@import "colors";
 $ph-cols:                 12;
 $ph-cols-remove-odd:      true;
 $ph-spacer:               20.6px;
 $ph-line-normal-height:   12px;
 $ph-line-large-height:    15px;
 $ph-animation:            ph-animation 0.85s linear infinite;
+$dark-plus: (#1e1e1e, true);
+$dracula-soft: (#282A36, true);
+$dracula: (#282A36, true);
+$github-dark-dimmed: (#22272e, true);
+$github-dark: (#0d1117, true);
+$github-light: (#ffffff, false);
+$hc_light: (#fff, false);
+$light-plus: (#ffffff, false);
+$material-darker: (#212121, false);
+$material-default: (#263238, false);
+$material-lighter: (#FAFAFA, false);
+$material-ocean: (#0F111A, dark);
+$material-palenight: (#292D3E, dark);
+$min-dark: (#1f1f1f, dark);
+$min-light: (#ffffff, false);
+$monokai: (#272822, true);
+$nord: (#2e3440, true);
+$one-dark-pro: (#282c34, true);
+$poimandres: (#1b1e28, true);
+$rose-pine-dawn: (#faf4ed, false);
+$rose-pine-moon: (#232136, true);
+$rose-pine: (#191724, true);
+$slack-dark: (#222222, true);
+$slack-ochin: (#ffffff, false);
+$solarized-dark: (#002B36, true);
+$solarized-light: (#fdf6e3, false);
+$vitesse-dark: (#121212, true);
+$vitesse-light: (#ffffff, false);
+
+$backgrounds: (
+  'dark-plus': $dark-plus,
+  'dracula-soft': $dracula-soft,
+  'dracula': $dracula,
+  'github-dark-dimmed': $github-dark-dimmed,
+  'github-dark': $github-dark,
+  'github-light': $github-light,
+  'hc_light': $hc_light,
+  'light-plus': $light-plus,
+  'material-darker': $material-darker,
+  'material-default': $material-default,
+  'material-lighter': $material-lighter,
+  'material-ocean': $material-ocean,
+  'material-palenight': $material-palenight,
+  'min-dark': $min-dark,
+  'min-light': $min-light,
+  'monokai': $monokai,
+  'nord': $nord,
+  'one-dark-pro': $one-dark-pro,
+  'poimandres': $poimandres,
+  'rose-pine-dawn': $rose-pine-dawn,
+  'rose-pine-moon': $rose-pine-moon,
+  'rose-pine': $rose-pine,
+  'slack-dark': $slack-dark,
+  'slack-ochin': $slack-ochin,
+  'solarized-dark': $solarized-dark,
+  'solarized-light': $solarized-light,
+  'vitesse-dark': $vitesse-dark,
+  'vitesse-light': $vitesse-light
+);
+
+@each $mode, $info in $backgrounds {
+  .cb-container.#{$mode} { background: list.nth($info, 1); }
+}
+
+.cb-container {
+  padding: 20px;
+  border-radius: 10px;
+  & pre.shiki { }
+}
+
 
 // pre.shiki, .ph-bg { border-radius: 1rem; padding: 1.75rem; }
 // pre.shiki { margin-bottom: 2.25rem; }

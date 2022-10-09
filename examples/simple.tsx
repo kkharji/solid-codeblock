@@ -1,6 +1,6 @@
-import Codeblock from "@codeblock/Codeblock"
+import { Codeblock } from "../src"
 import { createSignal } from "solid-js"
-import Example from "@examples/components/example"
+import Example from "./components/example"
 import { useConfig } from "./config"
 
 const defaultContent = "export const Home = () => {\n\treturn <div>Welcome</div>\n}"

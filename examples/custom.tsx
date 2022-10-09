@@ -1,5 +1,5 @@
-import Codeblock from "@codeblock/Codeblock"
-import Example from "@examples/components/example"
+import { Codeblock } from "../src"
+import Example from "./components/example"
 
 const content = "export const Login = () => {\n\treturn <input />\n}"
 

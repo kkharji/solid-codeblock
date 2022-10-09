@@ -1,7 +1,7 @@
-import { CodeblockProvider, ICodeblockProvider } from "@codeblock";
-import { FlowProps, JSXElement } from "solid-js";
+import { CodeblockProvider, ICodeblockProvider } from "../../src";
+import { JSXElement, ParentProps } from "solid-js";
 
-export type ExampleProps = FlowProps<{
+export type ExampleProps = ParentProps<{
   providerOpts: ICodeblockProvider,
   title: string,
   desc: string,

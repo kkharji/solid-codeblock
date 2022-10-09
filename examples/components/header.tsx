@@ -1,4 +1,4 @@
-import { useConfig } from '@examples/config';
+import { useConfig } from './../config';
 
 export default () => {
   const [config, setConfig] = useConfig()!;
