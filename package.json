@@ -1,6 +1,6 @@
 {
   "name": "solid-codeblock",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A lightweight library to render codeblock for solid-js",
   "author": "kkharji",
   "contributors": [],
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "dev": "vite dev --config=vite.dev.ts",
-    "build": "tsc && rollup -c",
+    "build": "tsc && rollup -c -w",
     "start": "vite --config=vite.dev.ts",
     "test": "jest --coverage",
     "minify": "terser --compress --mangle --module -- dist/index.js > dist/index.min.js",
