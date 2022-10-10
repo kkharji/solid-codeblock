@@ -90,7 +90,7 @@ export const CodeblockProvider = (props: ParentProps<{ opts: ICodeblockProvider 
     }
   })
 
-  if (opts.isDark) {
+  if (opts.isDark && singleTheme) {
     const isDark = opts.isDark;
     createEffect(() => {
       setStore("theme", isDark() ? opts.themes.dark : opts.themes.light)
