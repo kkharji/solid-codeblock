@@ -17,7 +17,7 @@ export default {
   plugins: [
     sass({
       include: ["./src/**/*.scss"],
-      output: "./dist/index.css",
+      output: "./dist/index.scss",
       runtime: require("sass")
     }),
     nodeResolve({
